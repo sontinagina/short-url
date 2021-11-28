@@ -20,7 +20,7 @@ const getUrl=(url)=>{
   if(valid){
   setGenurl("");
   setFlag(true);
-    fetch("https://tnny.herokuapp.com/getUrl",{
+    fetch("https://srt-urls.herokuapp.com",{
       method: "POST",
       body: JSON.stringify({
          url

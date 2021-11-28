@@ -16,11 +16,12 @@ const validURL=function(str) {
   return !!pattern.test(str);
 }
 const getUrl=(url)=>{
+    let err=false;
   const valid=validURL(url);
   if(valid){
   setGenurl("");
   setFlag(true);
-    fetch("https://srt-urls.herokuapp.com",{
+    fetch("https://srt-urls.herokuapp.com/getUrl",{
       method: "POST",
       body: JSON.stringify({
          url
@@ -38,13 +39,16 @@ const getUrl=(url)=>{
           // alert("success!!!!")
           return r.json();
          } else {
+             err=true;
            console.log(r);
           alert("Failed to generate small link!");
          }
       }
    ).then((r)=>{
+       if(!err){
     console.log(r.url);
     setGenurl(r.url);
+       }
    });
   }else{
     alert("Please enter a valid URL!");

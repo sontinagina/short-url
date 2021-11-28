@@ -21,14 +21,17 @@ const getUrl=(url)=>{
   if(valid){
   setGenurl("");
   setFlag(true);
-    fetch("https://srt-urls.herokuapp.com/getUrl",{
+  fetch("https://srt-urls.herokuapp.com/getUrl",{
+    // fetch("http://localhost:3009/getUrl",{
       method: "POST",
       body: JSON.stringify({
          url
       }),
       headers: {
          "Content-Type": "application/json",
-      }
+        //  "Access-Control-Allow-Origin":true
+      },
+    //   mode:"no-cors" 
     }).then(
       (r) => {
       setFlag(false);
@@ -41,7 +44,7 @@ const getUrl=(url)=>{
          } else {
              err=true;
            console.log(r);
-          alert("Failed to generate small link!");
+          alert("Failed to generate short link!");
          }
       }
    ).then((r)=>{
@@ -66,7 +69,7 @@ const copyToClipboard=function(){
             
             <Navbar bg="dark" variant="dark">
                 <Container>
-                <Navbar.Brand href="#">Tiny Urls</Navbar.Brand>
+                <Navbar.Brand href="#">Short Url </Navbar.Brand>
                     
                 </Container>
             </Navbar>
